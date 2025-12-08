@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chaithanya | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-soft: #ffe5d0;      /* peach */
+      --bg-soft-alt: #e3f2ff;  /* light blue */
+      --bg-soft-pink: #ffd6e8; /* light pink */
+      --accent: #ff9f7c;       /* peachy accent */
+      --accent-alt: #88c0ff;   /* blue accent */
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border-soft: #f4c9a8;
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --radius-xl: 22px;
+      --transition-fast: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: linear-gradient(145deg, #fffaf6, #e3f2ff);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.94),
+        rgba(227, 242, 255, 0.96)
+      );
+      border-bottom: 1px solid rgba(255, 159, 124, 0.2);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      animation: pulse 1.4s infinite alternate;
+    }
+
+    @keyframes pulse {
+      to {
+        transform: scale(1.25);
+        opacity: 0.6;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      transition: background var(--transition-fast), transform 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 159, 124, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 8px 18px rgba(255, 159, 124, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(255, 159, 124, 0.5);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--text-main);
+      border-radius: 999px;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.2rem 3rem;
+    }
+
+    section {
+      margin-top: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1.3rem;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::after {
+      content: "";
+      width: 46px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(227, 242, 255, 0.9);
+      border: 1px solid rgba(136, 192, 255, 0.6);
+      color: #174c7e;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.6fr 1.2fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    .hero-main {
+      padding: 1.6rem;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #ffffff, #fff1e4);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(244, 201, 168, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(
+        circle at top left,
+        rgba(255, 214, 232, 0.4),
+        transparent 55%
+      );
+      pointer-events: none;
+    }
+
+    .hero-greeting {
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-muted);
+    }
+
+    .hero-name {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-role {
+      margin-top: 0.3rem;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(227, 242, 255, 0.95);
+      border: 1px solid rgba(136, 192, 255, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-sub {
+      margin-top: 1rem;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      gap: 0.4rem;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition-fast), transform var(--transition-fast),
+        box-shadow var(--transition-fast), border var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      color: white;
+      box-shadow: 0 10px 24px rgba(255, 159, 124, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(255, 159, 124, 0.55);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(244, 201, 168, 0.9);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 229, 208, 0.7);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item span {
+      display: block;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: var(--radius-xl);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(244, 201, 168, 0.6);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        translate var(--transition-fast);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255, 214, 232, 0.7);
+      border: 1px solid rgba(255, 159, 124, 0.5);
+    }
+
+    .card-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      margin-bottom: 0.2rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(255, 229, 208, 0.8);
+      border: 1px dashed rgba(255, 159, 124, 0.75);
+      margin-top: 0.35rem;
+    }
+
+    .spark {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #fff, var(--accent));
+    }
+
+    /* Sections shared styles */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 2rem;
+    }
+
+    .timeline {
+      border-left: 2px dashed rgba(255, 159, 124, 0.6);
+      padding-left: 1.3rem;
+      margin-left: 0.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.65rem;
+      top: 0.25rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, #fff, var(--accent));
+      box-shadow: 0 0 0 6px rgba(255, 159, 124, 0.25);
+    }
+
+    .item-title {
+      font-weight: 600;
+    }
+
+    .item-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .item-meta {
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      color: #7a5b45;
+    }
+
+    .item-body {
+      font-size: 0.9rem;
+      margin-top: 0.35rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    .chip {
+      font-size: 0.7rem;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(227, 242, 255, 0.9);
+      background: rgba(227, 242, 255, 0.7);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .skill-badge {
+      padding: 0.23rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 159, 124, 0.6);
+      background: rgba(255, 229, 208, 0.7);
+    }
+
+    /* Achievements & Projects */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.7rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-tag {
+      font-size: 0.78rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-details {
+      font-size: 0.95rem;
+    }
+
+    .contact-details p {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-highlight {
+      padding: 0.8rem 1rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fffdf8, #ffe5d0);
+      border: 1px solid rgba(255, 159, 124, 0.6);
+      font-size: 0.9rem;
+      margin-top: 0.7rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-form label {
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.95);
+      outline: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: border var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .contact-form textarea {
+      border-radius: 18px;
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(255, 159, 124, 0.9);
+      box-shadow: 0 0 0 3px rgba(255, 159, 124, 0.25);
+      background: #ffffff;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.6rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      color: #ffffff;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 26px rgba(255, 159, 124, 0.6);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      z-index: 40;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(244, 201, 168, 0.6);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        order: -1;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        inset: 56px 1rem auto 1rem;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 18px;
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+        padding: 0.7rem;
+        flex-direction: column;
+        align-items: flex-start;
+        transform-origin: top;
+        transform: scaleY(0.6);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition-fast), transform var(--transition-fast);
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scaleY(1);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-main {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <span class="logo-dot"></span> CHAITHANYA
+      </div>
+      <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#projects">Projects</a>
+        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+          Contact
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-main reveal">
+        <p class="hero-greeting">👋 Hi, I’m</p>
+        <h1 class="hero-name">Chaithanya</h1>
+        <p class="hero-role">Computer Science Student · VTU (3rd Year)</p>
+        <div class="hero-highlight">
+          <span>🚀 NxtWave × OpenAI Academy Builderthon</span>
+          <span>| State-level Finalist · National round ongoing</span>
+        </div>
+        <p class="hero-sub">
+          Enthusiastic about problem-solving, building real-world solutions, and turning ideas
+          into prototypes through code, logic, and teamwork.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
+            View Projects ⬇
+          </button>
+          <button class="btn btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            Let’s Connect ✉
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span>Based in</span>
+            Bengaluru, India
+          </div>
+          <div class="hero-meta-item">
+            <span>Currently</span>
+            Product Research & Innovation Intern @ Inera Software
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="card reveal">
+          <p class="card-label">Tech Snapshot</p>
+          <div class="pill-list">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Java</span>
+            <span class="pill">C / C++ (DSA)</span>
+            <span class="pill">PostgreSQL (Basics)</span>
+          </div>
+          <div class="highlight-tag">
+            <span class="spark"></span>
+            Always learning · Java & Linux courses, self-driven projects
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <p class="card-label">Quick Facts</p>
+          <ul style="font-size:0.9rem; padding-left:1.1rem;">
+            <li>CGPA: 8.6 (B.E. CSE, VTU, 2023–2027)</li>
+            <li>RBIH Ideathon Finalist, Bengaluru (Fintech innovation)</li>
+            <li>Hackathon participant with rapid prototyping experience</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & EDUCATION -->
+    <section id="about" class="reveal">
+      <div class="section-title">
+        About
+        <span class="badge">Student · Builder · Innovator</span>
+      </div>
+      <div class="grid-2" style="margin-top:0.7rem;">
+        <div>
+          <p>
+            I’m a Computer Science student passionate about solving problems with clean logic
+            and practical systems. I enjoy turning abstract ideas into working prototypes, whether it’s
+            for hackathons, ideathons, or personal projects.
+          </p>
+          <p style="margin-top:0.7rem;">
+            Beyond coding, I’ve led teams, communicated with stakeholders, and built confidence
+            in presenting ideas—skills that help me grow as both an engineer and a leader.
+          </p>
+        </div>
+        <div>
+          <div class="card" style="background:linear-gradient(135deg,#ffffff,#e3f2ff);">
+            <p class="card-label">Education</p>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="item-title">B.E. in Computer Science</div>
+                <div class="item-sub">VTU, Karnataka (2023–2027, 2nd Year)</div>
+                <div class="item-meta">CGPA: 8.6</div>
+              </div>
+              <div class="timeline-item">
+                <div class="item-title">Pre-University (PUC)</div>
+                <div class="item-sub">Govt PU College, Kundapur</div>
+                <div class="item-meta">Percentage: 93.33%</div>
+              </div>
+              <div class="timeline-item">
+                <div class="item-title">SSLC</div>
+                <div class="item-sub">MDRS Udupi</div>
+                <div class="item-meta">Percentage: 94.56%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <div class="section-title">Experience</div>
+      <div class="grid-2">
+        <div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="item-title">
+                Product Research & Innovation Intern
+              </div>
+              <div class="item-sub">
+                Inera Software Pvt Ltd · VTU Belagavi · Sept 2025
+              </div>
+              <div class="item-body">
+                Actively involved in researching new technologies, exploring concepts for product
+                innovation, and contributing to idea validation and early prototypes to improve existing
+                products.
+              </div>
+              <div class="chip-row">
+                <span class="chip">Prototype Ideation</span>
+                <span class="chip">Tech Research</span>
+                <span class="chip">Feature Design</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-title">PR Team Head</div>
+              <div class="item-sub">TSIAR Sports Pvt Ltd · Bengaluru · Aug 2025</div>
+              <div class="item-body">
+                Led the Public Relations team, managing external communications, brand visibility, and
+                communication strategies for events and initiatives.
+              </div>
+              <div class="chip-row">
+                <span class="chip">Leadership</span>
+                <span class="chip">Brand Communication</span>
+                <span class="chip">Teamwork</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="background:#fffdf8;">
+            <p class="card-label">Core Strengths</p>
+            <ul style="font-size:0.9rem; padding-left:1.1rem;">
+              <li>Strong foundation in Data Structures & OOP concepts</li>
+              <li>Comfortable with C/C++, Java, and JavaScript</li>
+              <li>Good communication, leadership & teamwork skills</li>
+              <li>Fast learner, self-motivated, and curious</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="section-title">Skills</div>
+      <div class="card">
+        <div class="skills-grid">
+          <div>
+            <div class="skill-group-title">Programming & Tech</div>
+            <div class="skill-badges">
+              <span class="skill-badge">HTML</span>
+              <span class="skill-badge">CSS</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">C/C++ (DSA)</span>
+              <span class="skill-badge">PostgreSQL (Basics)</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-title">Tools & Concepts</div>
+            <div class="skill-badges">
+              <span class="skill-badge">VS Code</span>
+              <span class="skill-badge">Git</span>
+              <span class="skill-badge">Linux (Courses)</span>
+              <span class="skill-badge">OOP</span>
+              <span class="skill-badge">Data Structures</span>
+              <span class="skill-badge">LATEX</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-title">Soft Skills</div>
+            <div class="skill-badges">
+              <span class="skill-badge">Communication</span>
+              <span class="skill-badge">Teamwork</span>
+              <span class="skill-badge">Leadership</span>
+              <span class="skill-badge">Problem-solving</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-title">Learning & Growth</div>
+            <div class="skill-badges">
+              <span class="skill-badge">Self-learning</span>
+              <span class="skill-badge">Hackathons</span>
+              <span class="skill-badge">Fintech Ideation</span>
+              <span class="skill-badge">Builderthons</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="reveal">
+      <div class="section-title">Achievements</div>
+      <div class="cards-grid">
+        <div class="card" style="background:#fffdf8;">
+          <div class="card-title">NxtWave × OpenAI Academy Builderthon</div>
+          <div class="card-tag">State-level Finalist · National round ongoing</div>
+          <p class="card-body">
+            Selected as a state-level finalist for the prestigious Builderthon, showcasing
+            innovation and problem-solving. Currently progressing in the national-level round,
+            focusing on building impactful, tech-driven solutions.
+          </p>
+        </div>
+
+        <div class="card" style="background:#e3f2ff;">
+          <div class="card-title">RBIH Ideathon Finalist</div>
+          <div class="card-tag">Fintech innovation · Bengaluru</div>
+          <p class="card-body">
+            Reached the final round of RBIH Ideathon for a fintech innovation presentation.
+            Built and pitched an idea to improve real-world financial experiences using technology.
+          </p>
+        </div>
+
+        <div class="card" style="background:#ffd6e8;">
+          <div class="card-title">Hackathons & Events</div>
+          <div class="card-tag">Teamwork · Rapid prototyping</div>
+          <p class="card-body">
+            Participated in multiple hackathons involving quick idea generation, team
+            collaboration, and building functional prototypes under time constraints.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="section-title">Projects & Activities</div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Hackathon Prototypes</div>
+          <div class="card-tag">Ideation · UI & Logic · Teamwork</div>
+          <p class="card-body">
+            Contributed to several hackathon projects focusing on brainstorming, designing
+            user flows, and writing core logic for features. Learned to prioritize features that
+            deliver maximum impact in minimum time.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Self-learning Track</div>
+          <div class="card-tag">Java & Linux courses</div>
+          <p class="card-body">
+            Completed structured courses in Java and Linux, strengthening backend and systems
+            understanding. Regularly explores documentation, tutorials, and practice problems to
+            keep improving.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Exploring Real-world Use Cases</div>
+          <div class="card-tag">Fintech · Innovation · Research</div>
+          <p class="card-body">
+            Through the RBIH Ideathon and Builderthon experience, actively explores how
+            technology can improve financial access, digital experiences, and user trust in systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="section-title">Contact</div>
+      <div class="contact-grid">
+        <div class="contact-details">
+          <p>📍 Bengaluru, India</p>
+          <p>📧 <a href="mailto:chaithanyan151@gmail.com">chaithanyan151@gmail.com</a></p>
+          <p>
+            🔗
+            <a href="https://www.linkedin.com/in/chaithanya-n-aab2662a5" target="_blank">
+              linkedin.com/in/chaithanya-n-aab2662a5
+            </a>
+          </p>
+          <div class="contact-highlight">
+            Open to internships, collaborations, and opportunities where I can learn, build, and
+            contribute to meaningful products.
+          </div>
+        </div>
+        <div>
+          <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me how we can work together..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:0.4rem;">
+              Send Message ✉
+            </button>
+            <p id="formStatus" style="font-size:0.8rem; margin-top:0.3rem; color:#7a5b45;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Chaithanya · Designed & coded with curiosity and coffee ☕
+    </footer>
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Mobile nav
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealEls.forEach((el) => observer.observe(el));
+
+    // Back to top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Contact form (demo only)
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const status = document.getElementById("formStatus");
+      status.textContent = "Thanks for reaching out! I’ll get back to you soon.";
+      e.target.reset();
+    }
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
